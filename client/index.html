@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Semester Fees</title>
+	<link rel="stylesheet"
+	href="style.css" type="text/css">
+
+</head>
+<body>
+	<div class="main">
+		<div class="register">
+		<div id="loading"></div>
+		<h2>Semester Fees</h2>
+		<form id="register" onsubmit="return handleSubmit()">
+			<lebel> Name : </lebel>
+			<br>
+			<input type="text" name="fname"
+			id="name" placeholder="Enter your name">
+			<br><br>
+			<lebel> College : </lebel>
+			<br>
+			<input type="text" name="College" 
+			id="name" placeholder="Enter college name">
+			<br><br>
+			<lebel> Semester : </lebel>
+			<br>
+			<input type="text" name="sem" 
+			id="sem" placeholder="Enter Semester">
+			<br><br>
+			<lebel> Fees for the month of : </lebel>
+			<br>
+			<input type="month" name="month"
+			id="name" placeholder="Enter the month">
+			<br><br>
+			<lebel> Payment Mode : </lebel>
+			<br>
+			<input type="text" name="mode"
+			id="name" placeholder="Enter the mode of payment">
+			<br><br>
+			<lebel> Student Phone Number : </lebel>
+			<br>
+			<input type="text" name="number"
+			id="name" placeholder="Enter the phone number">
+			<br><br>
+			<lebel> Guardian Phone Number: </lebel>
+			<br>
+			<input type="text" name="number"
+			id="name" placeholder="Enter the guardian phone number">
+			<br><br>
+			<lebel> Screenshot of the Payment : </lebel>
+			<br>
+			<input type="file" name="file"
+			id="name" placeholder="Enter the Screenshot">
+			<br><br>
+			<input type="button" value="Submit"
+			name="submit" id="submit">
+	</main>
+	<script type="text/javascript">
+		const inputs = document.querySelectorAll("input");
+		const [name, college, sem, feesMonth, paymentMode, mobile, gurdianMobile, screenshot ] = inputs;
+		const loading = document.querySelector('#loading');
+		const submit = document.querySelector("#submit");
+
+		submit.addEventListener("click", (e) => {
+				const data = new FormData();
+				data.append("name", name.value);
+				data.append("college", college.value);
+				data.append("sem", sem.value);
+				data.append("feesMonth", feesMonth.value);
+				data.append("mobile", gurdianMobile.value);
+				data.append("screenshot", screenshot.files[0]);
+				data.append("gurdianMobile", gurdianMobile.value);
+				data.append("paymentMode", paymentMode.value);
+				const submitBtn = document.querySelector("#submit");
+				loading.innerHTML = "Please wait...";
+			fetch("http://localhost:3005/api/fees/upload", {
+				method: "POST",
+    			mode: 'cors',
+				body: data
+			}).then((response) => response.json())
+  				.then((data) => {alert("Successfully uploaded")})
+				.catch((err) => alert("Please retry..Refresh the page and submit again"))
+				.finally(() => loading.innerHTML = "")
+		})
+		
+	</script>
+</body>
+</html>
