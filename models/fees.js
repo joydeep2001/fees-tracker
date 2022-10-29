@@ -41,6 +41,10 @@ const feesSchema = new mongoose.Schema({
   screenshotURL: {
     type: String,
   },
+  verificationStatus: {
+    type: String,
+    default: "PENDING",
+  },
 });
 
 module.exports = mongoose.model("feesSchema", feesSchema);

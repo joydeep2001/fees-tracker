@@ -5,88 +5,271 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fees List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet"
-  href="style.css" type="text/css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-   
-<!-- Modal -->
-<div class="modal fade p-1" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="ss-modal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div style="height: 80vh; width: 50vw;" class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Payment ScreenShot</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Loading...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <!-- Modal For Screenshot display -->
+    <div
+      class="modal fade p-1"
+      id="exampleModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ss-modal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div style="width: 50vw" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Payment ScreenShot
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">Loading...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-success">Verify</button>
+            <button type="button" class="btn btn-danger">Reject</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-  <table class="table table-striped">
-    <thead class="bg-dark text-light sticky-top">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Semester</th>
-        <th scope="col">College</th>
-        <th scope="col">Fees of Month</th>
-        <th scope="col">Payment Mode</th>
-        <th scope="col">Mobile No.</th>
-        <th scope="col">Gurdian Mobile No.</th>
-        <th scope="col">Payment Date and Time</th>
-        <th scope="col">ScreenShot</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-        
-    </tbody>
-  </table>
+    <!-- Modal for filter -->
+    <div
+      class="modal fade p-1"
+      id="FilterModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="filter-modal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div style="width: 50vw" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="FilterModalLongTitle">Filter</h5>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-4 form-check">
+                <input
+                  class="form-check-input"
+                  checked
+                  type="checkbox"
+                  id="pending"
+                />
+                <label class="form-check-label" for="pending"> Pending </label>
+              </div>
+              <div class="col-4 form-check">
+                <input
+                  class="form-check-input"
+                  checked
+                  type="checkbox"
+                  id="verified"
+                />
+                <label class="form-check-label" for="verified">
+                  Verified
+                </label>
+              </div>
+              <div class="col-4 form-check">
+                <input
+                  class="form-check-input"
+                  checked
+                  type="checkbox"
+                  id="rejected"
+                />
+                <label class="form-check-label" for="rejected">
+                  Rejected
+                </label>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col md-6">
+                <label for="month" class="form-label">Month</label>
+                <input id="month" class="form-control" type="month" />
+              </div>
+              <div class="col md-6">
+                <label for="student-name" class="form-label">Name</label>
+                <input id="student-name" class="form-control" type="text" />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col md-2">
+                <label for="sem" class="form-label">Semester</label>
+                <input id="sem" class="form-control" type="number" />
+              </div>
+              <div class="col md-5">
+                <label for="clg" class="form-label">College</label>
+                <input id="clg" class="form-control" type="text" />
+              </div>
+              <div class="col md-5">
+                <label for="p-mode" class="form-label">Payment mode</label>
+                <input id="p-mode" class="form-control" type="text" />
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col md-2">
+                <label for="mobile" class="form-label">Mobile No.</label>
+                <input id="mobile" class="form-control" type="number" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              onclick="getFilteredData()"
+              type="button"
+              class="btn btn-success"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      id="filter"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#FilterModalLong"
+    >
+      Filter
+    </button>
+    <table class="table table-striped">
+      <thead class="bg-dark text-light sticky-top">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Semester</th>
+          <th scope="col">College</th>
+          <th scope="col">Fees of Month</th>
+          <th scope="col">Payment Mode</th>
+          <th scope="col">Mobile No.</th>
+          <th scope="col">Gurdian Mobile No.</th>
+          <th scope="col">Payment Date and Time</th>
+          <th scope="col">Verification Status</th>
+          <th scope="col">ScreenShot</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
     <script>
       let cachedData = [];
       function showSSinModal(event) {
-        const [targetEl] = cachedData.filter((fee) => fee._id === event.target.id);
+        const [targetEl] = cachedData.filter(
+          (fee) => fee._id === event.target.id
+        );
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<div class="loading"><img src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`
-      } 
+        modalBody.innerHTML = `<div class="loading"><img src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`;
+      }
+      function getFilteredData() {
+        const studentName = document.querySelector("#student-name");
+        const clg = document.querySelector("#clg");
+        const month = document.querySelector("#month");
+        const mobile = document.querySelector("#mobile");
+        const paymentMode = document.querySelector("#p-mode");
+        const sem = document.querySelector("#sem");
+        const rejected = document.querySelector("#rejected");
+        const verified = document.querySelector("#verified");
+        const pending = document.querySelector("pending");
+        function filterTest(value, field) {
+          if (field.value.trim() === "") return true;
+          return field.value == value;
+        }
+        Array.prototype.debug = function () {
+          console.log(this);
+          return this;
+        };
+        const filterData = cachedData
+          .filter((student) => filterTest(student.name, studentName))
+          .debug()
+          .filter((student) => filterTest(student.college, clg))
+          .debug()
+          .filter((student) => filterTest(student.mobile, mobile))
+          .debug()
+          .filter((student) => filterTest(student.feesMonth, month))
+          .debug()
+          .filter((student) => filterTest(student.sem, sem))
+          .debug()
+          .filter((student) => filterTest(student.paymentMode, paymentMode))
+          .debug();
+        createTable(filterData);
+        const myModalEl = document.querySelector("#FilterModalLong");
+        const modal = bootstrap.Modal.getInstance(myModalEl);
+        modal.hide();
+      }
+      async function verifyPayment() {
+        //body
+      }
+      function createTable(data) {
+        const tbody = document.querySelector("tbody");
+        tbody.innerHTML = "";
+        data.forEach((fee, sl) => {
+          const row = document.createElement("tr");
+          row.innerHTML += `<th scope="row">${sl + 1}</th>`;
+          row.innerHTML += `<td>${fee.name}</td>`;
+          row.innerHTML += `<td>${fee.sem}</td>`;
+          row.innerHTML += `<td>${fee.college}</td>`;
+          row.innerHTML += `<td>${fee.feesMonth}</td>`;
+          row.innerHTML += `<td>${fee.paymentMode}</td>`;
+          row.innerHTML += `<td>${fee.mobile}</td>`;
+          row.innerHTML += `<td>${fee.gurdianMobile}</td>`;
+          row.innerHTML += `<td>${fee.timestamp}</td>`;
+          row.innerHTML += `<td><span class="badge bg-warning text-dark">Pending</span></td>`;
+          row.innerHTML += `<td><button onclick=showSSinModal(event) id=${fee._id} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Show</button></td>`;
+          tbody.appendChild(row);
+        });
+      }
       async function getStudents() {
         const response = await fetch("http://localhost:3005/api/fees");
         console.log(response);
-        if(response.ok && response.status === 200) {
+        if (response.ok && response.status === 200) {
           const data = await response.json();
-          const tbody = document.querySelector('tbody');
           console.log(data);
           cachedData = data.fees;
-          data.fees.forEach((fee, sl) => {
-            const row = document.createElement('tr');
-
-            row.innerHTML += `<th scope="row">${sl + 1}</th>`;
-            row.innerHTML += `<td>${fee.name}</td>`;
-            row.innerHTML += `<td>${fee.sem}</td>`;
-            row.innerHTML += `<td>${fee.college}</td>`;
-            row.innerHTML += `<td>${fee.feesMonth}</td>`;
-            row.innerHTML += `<td>${fee.paymentMode}</td>`;
-            row.innerHTML += `<td>${fee.mobile}</td>`;
-            row.innerHTML += `<td>${fee.gurdianMobile}</td>`;
-            row.innerHTML += `<td>${fee.timestamp}</td>`;
-            row.innerHTML += `<td><button onclick=showSSinModal(event) id=${fee._id} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Show</button></td>`;
-            tbody.appendChild(row);
-          })
+          createTable(cachedData);
         }
-        
-
-    }
-    getStudents();
+      }
+      getStudents();
     </script>
   </body>
 </html>
