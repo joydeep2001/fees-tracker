@@ -1,104 +1,169 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet">
-	<title>Semester Fees</title>
-</head>
-<body class="container-fluid">
-  <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="./img/mentordada.png" alt="" width="100" height="50" class="d-inline-block align-text-top">
-      <h1>Semester Fees</h1>
-    </a>
-  </div>
-</nav>
- <div id="message" role="alert">
-  <!-- is-valid -->
-</div>
-	<form class="row g-3">
-  <div class="col-md-6">
-    <label for="name" class="form-label">Full name</label>
-    <input type="text" class="form-control" id="name" aria-describedby="name-fb" required>
-    <div id="name-fb" class="invalid-feedback">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-6">
-    <label for="clg" class="form-label">College</label>
-    <input type="text" class="form-control" id="clg" aria-describedby="clg-fb" required>
-    <div id="clg-fb" class="invalid-feedback">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-4">
-    <label for="sem" class="form-label">Semester</label>
-      <input type="number" class="form-control " id="sem" aria-describedby="sem-fb" required>
-      <div id="sem-fb" class="invalid-feedback">
-        Please Enter Your Semester.
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" />
+    <title>Semester Fees</title>
+  </head>
+  <body class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="./img/mentordada.png"
+            alt=""
+            width="100"
+            height="50"
+            class="d-inline-block align-text-top"
+          />
+          <h1>Semester Fees</h1>
+        </a>
       </div>
-  </div>
-  <div class="col-md-4">
-    <label for="fees-month" class="form-label">Fees For The Month Of</label>
-    <input type="month" class="form-control " id="fees-month" aria-describedby="fees-month-fb" required>
-    <div id="fees-month-fb" class="invalid-feedback">
-      Please provide a valid month.
+    </nav>
+    <div id="message" role="alert">
+      <!-- is-valid -->
     </div>
-  </div>
-  
-
-  <div class="col-md-4">
-    <label for="payment-mode" class="form-label">Payment Mode</label>
-    <input type="text" class="form-control " id="payment-mode" aria-describedby="payment-mode-fb" required>
-    <div id="payment-mode-fb" class="invalid-feedback">
-      Please provide a valid payment mode.
-    </div>
-  </div>
-    <div class="col-md-6">
-    <label for="phn-no" class="form-label">Student Phone Number</label>
-    <input type="number" class="form-control " id="phn-no" aria-describedby="phn-no-fb" required>
-    <div id="phn-no-fb" class="invalid-feedback">
-      Please provide a valid Phone Number.
-    </div>
-  </div>
+    <form class="row g-3">
       <div class="col-md-6">
-    <label for="gurdian-phn-no" class="form-label">Gurdian Phone Number</label>
-    <input type="number" class="form-control " id="gurdian-phn-no" aria-describedby="gurdian-phn-no-fb" required>
-    <div id="gurdian-phn-no-fb" class="invalid-feedback">
-      Please provide a valid Phone Number.
-    </div>
-  </div>
-  <div class="col-md-12">
-    <label for="ss" class="form-label">Screenshot of Payment</label>
-    <input type="file" class="form-control " id="ss" aria-describedby="ss" required>
-    <div id="ss-fb" class="invalid-feedback">
-      Please provide a valid image.
-    </div>
-  </div>
-  <div class="col-12">
-    <button id="submit" class="btn btn-primary" type="button">Submit form</button>
-  </div>
+        <label for="name" class="form-label">Full name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          aria-describedby="name-fb"
+          required
+        />
+        <div id="name-fb" class="invalid-feedback"></div>
+      </div>
+      <div class="col-md-6">
+        <label for="clg" class="form-label">College</label>
+        <input
+          type="text"
+          class="form-control"
+          id="clg"
+          aria-describedby="clg-fb"
+          required
+        />
+        <div id="clg-fb" class="invalid-feedback">Looks good!</div>
+      </div>
+      <div class="col-md-4">
+        <label for="sem" class="form-label">Semester</label>
+        <input
+          type="number"
+          class="form-control"
+          id="sem"
+          aria-describedby="sem-fb"
+          required
+        />
+        <div id="sem-fb" class="invalid-feedback">
+          Please Enter Your Semester.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="fees-month" class="form-label">Fees For The Month Of</label>
+        <input
+          type="month"
+          class="form-control"
+          id="fees-month"
+          aria-describedby="fees-month-fb"
+          required
+        />
+        <div id="fees-month-fb" class="invalid-feedback">
+          Please provide a valid month.
+        </div>
+      </div>
 
-</form>
+      <div class="col-md-4">
+        <label for="payment-mode" class="form-label">Payment Mode</label>
+        <input
+          type="text"
+          class="form-control"
+          id="payment-mode"
+          aria-describedby="payment-mode-fb"
+          required
+        />
+        <div id="payment-mode-fb" class="invalid-feedback">
+          Please provide a valid payment mode.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="phn-no" class="form-label">Student Phone Number</label>
+        <input
+          type="number"
+          class="form-control"
+          id="phn-no"
+          aria-describedby="phn-no-fb"
+          required
+        />
+        <div id="phn-no-fb" class="invalid-feedback">
+          Please provide a valid Phone Number.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="gurdian-phn-no" class="form-label"
+          >Gurdian Phone Number</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="gurdian-phn-no"
+          aria-describedby="gurdian-phn-no-fb"
+          required
+        />
+        <div id="gurdian-phn-no-fb" class="invalid-feedback">
+          Please provide a valid Phone Number.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="ss" class="form-label">Screenshot of Payment</label>
+        <input
+          type="file"
+          class="form-control"
+          id="ss"
+          aria-describedby="ss"
+          required
+        />
+        <div id="ss-fb" class="invalid-feedback">
+          Please provide a valid image.
+        </div>
+      </div>
+      <div class="col-12">
+        <button id="submit" class="btn btn-primary" type="button">
+          Submit form
+        </button>
+      </div>
+    </form>
 
-
-  <script type="text/javascript">
-    const inputs = document.querySelectorAll("input");
-    const [name, college, sem, feesMonth, paymentMode, mobile, gurdianMobile, screenshot ] = inputs;
-    const message = document.querySelector("#message");
-    const submit = document.querySelector("#submit");
-</script>
-<script src="./js/validation.js"></script>
-<script>
-    submit.addEventListener("click", (e) => {
+    <script type="text/javascript">
+      const inputs = document.querySelectorAll("input");
+      const [
+        studentName,
+        college,
+        sem,
+        feesMonth,
+        paymentMode,
+        mobile,
+        gurdianMobile,
+        screenshot,
+      ] = inputs;
+      const message = document.querySelector("#message");
+      const submit = document.querySelector("#submit");
+    </script>
+    <script src="./js/validation.js"></script>
+    <script>
+      submit.addEventListener("click", (e) => {
         const data = new FormData();
         const validateForm = new ValidateForm();
         validateForm.validate();
-        if(true) {
-          //validateForm.showErrors();
+        validateForm.showErrors();
+        if (!validateForm.isValid) {
           return;
         }
         data.append("name", name.value);
@@ -110,27 +175,29 @@
         data.append("gurdianMobile", gurdianMobile.value);
         data.append("paymentMode", paymentMode.value);
         const submitBtn = document.querySelector("#submit");
-        message.style.className = 'alert';
-        message.classList.add('alert-info');
+        message.style.className = "alert";
+        message.classList.add("alert-info");
         message.innerHTML = "Please wait...";
-      fetch("http://localhost:3005/api/fees/upload", {
-        method: "POST",
-          mode: 'cors',
-        body: data
-      }).then((response) => response.json())
-          .then((data) => { message.style.className = 'alert'; message.classList.add('alert-success'); message.innerHTML = "Successfully uploaded!"})
-        .catch((err) => {message.style.className = 'alert'; message.classList.add('alert-danger'); message.innerHTML = "Internal server error!"})
+        fetch("http://localhost:3005/api/fees/upload", {
+          method: "POST",
+          mode: "cors",
+          body: data,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            message.className = "alert";
+            message.classList.remove("alert-danger");
+            message.classList.add("alert-success");
+            message.innerHTML = "Successfully uploaded!";
+          })
+          .catch((err) => {
+            message.className = "alert";
+            message.classList.remove("alert-success");
+            message.classList.add("alert-danger");
+            message.innerHTML = "Internal server error!";
+          });
         // .finally(() => message.innerHTML = "")
-    })
-
-    
-  </script>
-
-
-
-
-
-
-
-</body>
+      });
+    </script>
+  </body>
 </html>
