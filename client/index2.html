@@ -51,7 +51,7 @@
           aria-describedby="clg-fb"
           required
         />
-        <div id="clg-fb" class="invalid-feedback">Looks good!</div>
+        <div id="clg-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-md-4">
         <label for="sem" class="form-label">Semester</label>
@@ -62,9 +62,7 @@
           aria-describedby="sem-fb"
           required
         />
-        <div id="sem-fb" class="invalid-feedback">
-          Please Enter Your Semester.
-        </div>
+        <div id="sem-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-md-4">
         <label for="fees-month" class="form-label">Fees For The Month Of</label>
@@ -75,9 +73,7 @@
           aria-describedby="fees-month-fb"
           required
         />
-        <div id="fees-month-fb" class="invalid-feedback">
-          Please provide a valid month.
-        </div>
+        <div id="fees-month-fb" class="invalid-feedback"></div>
       </div>
 
       <div class="col-md-4">
@@ -89,9 +85,7 @@
           aria-describedby="payment-mode-fb"
           required
         />
-        <div id="payment-mode-fb" class="invalid-feedback">
-          Please provide a valid payment mode.
-        </div>
+        <div id="payment-mode-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-md-6">
         <label for="phn-no" class="form-label">Student Phone Number</label>
@@ -102,9 +96,7 @@
           aria-describedby="phn-no-fb"
           required
         />
-        <div id="phn-no-fb" class="invalid-feedback">
-          Please provide a valid Phone Number.
-        </div>
+        <div id="phn-no-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-md-6">
         <label for="gurdian-phn-no" class="form-label"
@@ -117,9 +109,7 @@
           aria-describedby="gurdian-phn-no-fb"
           required
         />
-        <div id="gurdian-phn-no-fb" class="invalid-feedback">
-          Please provide a valid Phone Number.
-        </div>
+        <div id="gurdian-phn-no-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-md-12">
         <label for="ss" class="form-label">Screenshot of Payment</label>
@@ -130,9 +120,7 @@
           aria-describedby="ss"
           required
         />
-        <div id="ss-fb" class="invalid-feedback">
-          Please provide a valid image.
-        </div>
+        <div id="ss-fb" class="invalid-feedback"></div>
       </div>
       <div class="col-12">
         <button id="submit" class="btn btn-primary" type="button">
@@ -166,7 +154,7 @@
         if (!validateForm.isValid) {
           return;
         }
-        data.append("name", name.value);
+        data.append("name", studentName.value);
         data.append("college", college.value);
         data.append("sem", sem.value);
         data.append("feesMonth", feesMonth.value);

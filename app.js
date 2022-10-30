@@ -6,11 +6,12 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
+const bodyParser = require("body-parser");
 const fees = require("./routes/fees");
 
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
+app.use(bodyParser.json());
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
 const connect = mongoose.connection;
 connect.on("open", () => {

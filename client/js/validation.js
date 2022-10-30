@@ -11,14 +11,14 @@ function ValidateForm() {
     college: {
       ref: college,
       type: "string",
-      len: [5, 100],
+      len: [3, 100],
       required: true,
       error: null,
     },
     sem: {
       ref: sem,
       type: "number",
-      range: [1, 2],
+      range: [1, 10],
       required: true,
       error: null,
     },
@@ -130,7 +130,6 @@ function ValidateForm() {
   this.showErrors = function () {
     console.clear();
 
-    const errorList = document.createElement("ul");
     for (const inputField in this.schema) {
       const field = this.schema[inputField];
       const feedback = document.querySelector(`#${field.ref.id}-fb`);
@@ -141,8 +140,11 @@ function ValidateForm() {
         field.ref.classList.add("is-valid");
       } else {
         field.ref.focus();
+        const errorList = document.createElement("ul");
+        feedback.innerHTML = "";
         for (const key in field.error) {
           if (key === "exists") continue;
+          if (field.error[key] === null) continue;
           const item = document.createElement("li");
           item.innerHTML = field.error[key];
           errorList.appendChild(item);

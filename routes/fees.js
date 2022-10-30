@@ -17,10 +17,28 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: "please try again!" });
   }
 });
+router.post("/updateVerificationStatus", async (req, res) => {
+  try {
+    console.log(req.body);
+    const verificationStatus = req.body.verificationStatus;
+    const paymentId = req.body.paymentId;
 
+    const updatedDoc = await fee.updateOne(
+      { _id: paymentId },
+      { $set: { verificationStatus: verificationStatus } }
+    );
+    console.log(updatedDoc);
+    res.status(200).json({ id: paymentId });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Internal server error!" });
+  }
+});
 router.post("/upload", upload.single("screenshot"), async (req, res) => {
   console.log(req.body);
-  const ssURL = await fileUpload(`${req.body.name}_sem${req.body.sem}_${req.body.feesMonth}`);
+  const ssURL = await fileUpload(
+    `${req.body.name}_sem${req.body.sem}_${req.body.feesMonth}`
+  );
   try {
     const payload = new fee({
       name: req.body.name,
@@ -34,7 +52,7 @@ router.post("/upload", upload.single("screenshot"), async (req, res) => {
       paymentMode: req.body.paymentMode,
     });
     const uploadedData = await payload.save();
-   
+
     res.status(201).json({ message: "success" });
   } catch (err) {
     console.log(err);

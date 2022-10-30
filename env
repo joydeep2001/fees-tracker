@@ -1,6 +1,0 @@
-DB_CONNECT='mongodb+srv://fees:feessaver@cluster0.hrxxnym.mongodb.net/?retryWrites=true&w=majority'
-GOOGLE_CLIENT_ID=640947861210-gdg712drpm572gv5geh998jmp3ogd7ci.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
-OAUTH2_REFRESH_TOKEN=1//04jnFxXE14JR5CgYIARAAGAQSNwF-L9IreBVvrZNlmmQIZHIQMSQVADtVNFARf3e1dWGfPB9Awv8A6K8G6eAP3M-5ymmwUDssGbo
-#fees
-#feessaver
