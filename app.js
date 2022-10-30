@@ -1,8 +1,8 @@
-// if (process.env.NODE_ENV === "development") {
-//   require("dotenv").config();
-//   console.log(process.env.NODE_ENV);
-// }
-require("dotenv").config();
+if (process.env.NODE_ENV === "development") {
+  require("dotenv").config();
+  console.log('NODE_ENV=',process.env.NODE_ENV);
+}
+//require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -12,6 +12,7 @@ const fees = require("./routes/fees");
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
+app.use(express.static('client'));
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
 const connect = mongoose.connection;
 connect.on("open", () => {
