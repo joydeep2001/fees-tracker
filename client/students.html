@@ -269,7 +269,7 @@
       }
       async function verifyPayment(event) {
         const response = await fetch(
-          "http://localhost:3005/api/fees/updateVerificationStatus",
+          "/api/fees/updateVerificationStatus",
           {
             method: "POST",
             mode: "cors",
@@ -319,7 +319,7 @@
         });
       }
       async function getStudents() {
-        const response = await fetch("http://localhost:3005/api/fees");
+        const response = await fetch("/api/fees");
         console.log(response);
         if (response.ok && response.status === 200) {
           const data = await response.json();

@@ -166,7 +166,7 @@
         message.style.className = "alert";
         message.classList.add("alert-info");
         message.innerHTML = "Please wait...";
-        fetch("http://localhost:3005/api/fees/upload", {
+        fetch("/api/fees/upload", {
           method: "POST",
           mode: "cors",
           body: data,
