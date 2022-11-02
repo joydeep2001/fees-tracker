@@ -36,12 +36,13 @@ router.post("/updateVerificationStatus", async (req, res) => {
 });
 router.post("/upload", upload.single("screenshot"), async (req, res) => {
   console.log(req.body);
-  const ssURL = await fileUpload(
-    `${req.body.name}_sem${req.body.sem}_${req.body.feesMonth}`
-  );
+
   try {
+    const ssURL = await fileUpload(
+      `${req.body.studentName}_sem${req.body.sem}_${req.body.feesMonth}`
+    );
     const payload = new fee({
-      name: req.body.name,
+      name: req.body.studentName,
       mobile: req.body.mobile,
       gurdianMobile: req.body.gurdianMobile,
       college: req.body.college,

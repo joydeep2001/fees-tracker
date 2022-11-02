@@ -8,7 +8,10 @@ const storage = multer.diskStorage({
     cb(null, folderPath + "/tmp");
   },
   filename: function (req, file, cb) {
-    cb(null, `${req.body.name}_sem${req.body.sem}_${req.body.feesMonth}`);
+    cb(
+      null,
+      `${req.body.studentName}_sem${req.body.sem}_${req.body.feesMonth}`
+    );
   },
 });
 const upload = multer({ storage: storage });

@@ -27,9 +27,72 @@
         </a>
       </div>
     </nav>
-    <div id="message" role="alert">
-      <!-- is-valid -->
+    <!-- svg icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+        />
+      </symbol>
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+        />
+      </symbol>
+      <symbol
+        id="exclamation-triangle-fill"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+        />
+      </symbol>
+    </svg>
+
+    <!-- please wait alert -->
+    <div id="wait-alert" class="fixed-top d-none alert alert-info" role="alert">
+      <div class="spinner-border" role="status"></div>
+      <div id="msg-body">Please wait...</div>
     </div>
+    <!-- success alert -->
+    <div
+      id="success-alert"
+      class="alert alert-success fixed-top d-none align-items-center"
+      role="alert"
+    >
+      <svg
+        class="bi flex-shrink-0 me-2"
+        width="24"
+        height="24"
+        role="img"
+        aria-label="Success:"
+      >
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>Data uploaded successfully!</div>
+      <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+    </div>
+
+    <!-- fail alert -->
+    <div
+      id="fail-alert"
+      class="alert alert-danger fixed-top d-none align-items-center"
+      role="alert"
+    >
+      <svg
+        class="bi flex-shrink-0 me-2"
+        width="24"
+        height="24"
+        role="img"
+        aria-label="Danger:"
+      >
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>Something went wrong! Please try again!!</div>
+      <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+    </div>
+
     <form class="row g-3">
       <div class="col-md-6">
         <label for="name" class="form-label">Full name</label>
@@ -128,7 +191,7 @@
         </button>
       </div>
     </form>
-
+    <div class="row p-5"></div>
     <script type="text/javascript">
       const inputs = document.querySelectorAll("input");
       const [
@@ -142,7 +205,51 @@
         screenshot,
       ] = inputs;
       const message = document.querySelector("#message");
+      const messageBody = document.querySelector("#msg-body");
       const submit = document.querySelector("#submit");
+      const alerts = {
+        wait: document.querySelector("#wait-alert"),
+        success: document.querySelector("#success-alert"),
+        fail: document.querySelector("#fail-alert"),
+      };
+    </script>
+    <script>
+      async function wrapFetch(url, options) {
+        submit.disabled = true;
+        alerts.wait.classList.remove("d-none");
+        alerts.wait.classList.remove("d-flex");
+        return fetch(url, options);
+      }
+      async function sendFeesData(data) {
+        const URL = "/api/fees/upload";
+        const URL_TEST_SUCCESS = "/api/test/success";
+        const URL_TEST_FAIL = "/api/test/fail";
+        const URL_TEST_ISE = "/api/test/ise";
+        try {
+          const response = await wrapFetch(URL, {
+            method: "POST",
+            mode: "cors",
+            body: data,
+          });
+          alerts.wait.classList.add("d-none");
+          alerts.wait.classList.remove("d-flex");
+
+          if (!response.ok) {
+            submit.disabled = false;
+
+            alerts.fail.classList.remove("d-none");
+            alerts.fail.classList.add("d-flex");
+
+            return;
+          }
+          const responseData = await response.json();
+
+          alerts.success.classList.remove("d-none");
+          alerts.success.classList.add("d-flex");
+        } catch (err) {
+          console.log(err);
+        }
+      }
     </script>
     <script src="./js/validation.js"></script>
     <script>
@@ -154,7 +261,8 @@
         if (!validateForm.isValid) {
           return;
         }
-        data.append("name", studentName.value);
+
+        data.append("studentName", studentName.value);
         data.append("college", college.value);
         data.append("sem", sem.value);
         data.append("feesMonth", feesMonth.value);
@@ -162,29 +270,8 @@
         data.append("screenshot", screenshot.files[0]);
         data.append("gurdianMobile", gurdianMobile.value);
         data.append("paymentMode", paymentMode.value);
-        const submitBtn = document.querySelector("#submit");
-        message.style.className = "alert";
-        message.classList.add("alert-info");
-        message.innerHTML = "Please wait...";
-        fetch("/api/fees/upload", {
-          method: "POST",
-          mode: "cors",
-          body: data,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            message.className = "alert";
-            message.classList.remove("alert-danger");
-            message.classList.add("alert-success");
-            message.innerHTML = "Successfully uploaded!";
-          })
-          .catch((err) => {
-            message.className = "alert";
-            message.classList.remove("alert-success");
-            message.classList.add("alert-danger");
-            message.innerHTML = "Internal server error!";
-          });
-        // .finally(() => message.innerHTML = "")
+
+        sendFeesData(data);
       });
     </script>
   </body>
