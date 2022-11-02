@@ -125,7 +125,10 @@ function ValidateForm() {
         return "Please enter a valid number";
       return null;
     }
+    //todo: add proper validations
     if (type === "month") return null;
+    if (type === "string") return null;
+    if (type === "file") return null;
   };
   this.showErrors = function () {
     console.clear();
