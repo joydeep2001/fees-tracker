@@ -218,6 +218,8 @@
         submit.disabled = true;
         alerts.wait.classList.remove("d-none");
         alerts.wait.classList.remove("d-flex");
+        alerts.fail.classList.add("d-none");
+        alerts.success.classList.add("d-none");
         return fetch(url, options);
       }
       async function sendFeesData(data) {

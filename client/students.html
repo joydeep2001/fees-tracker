@@ -16,7 +16,7 @@
   <body>
     <!-- Modal For Screenshot display -->
     <div
-      class="modal fade p-1"
+      class="modal fade p-1 modal-xl"
       id="exampleModalLong"
       tabindex="-1"
       role="dialog"
@@ -198,7 +198,13 @@
           <th scope="col">ScreenShot</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <!-- please wait alert -->
+        <div id="wait-alert" class="alert alert-info" role="alert">
+          <div class="spinner-border" role="status"></div>
+          <div id="msg-body">Please wait...</div>
+        </div>
+      </tbody>
     </table>
 
     <script
@@ -215,7 +221,7 @@
           (fee) => fee._id === event.target.id
         );
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<div class="loading"><img src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`;
+        modalBody.innerHTML = `<div class="loading"><img style="max-width: 1100px;" src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`;
       }
       function getFilteredData() {
         const studentName = document.querySelector("#student-name");
@@ -227,6 +233,7 @@
         const rejected = document.querySelector("#rejected");
         const verified = document.querySelector("#verified");
         const pending = document.querySelector("#pending");
+
         function filterTest(value, field) {
           if (field.value.trim() === "") return true;
           return field.value == value;
@@ -268,20 +275,17 @@
         modal.hide();
       }
       async function verifyPayment(event) {
-        const response = await fetch(
-          "/api/fees/updateVerificationStatus",
-          {
-            method: "POST",
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              verificationStatus: event.target.value,
-              paymentId: paymentId,
-            }),
-          }
-        );
+        const response = await fetch("/api/fees/updateVerificationStatus", {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            verificationStatus: event.target.value,
+            paymentId: paymentId,
+          }),
+        });
         if (response.ok && response.status === 200) {
           const data = await response.json();
           console.log(data.id);
@@ -292,6 +296,7 @@
       }
       function createTable(data) {
         const tbody = document.querySelector("tbody");
+
         tbody.innerHTML = "";
         const styleClassToPaymentStatus = {
           PENDING: "bg-warning",
@@ -316,6 +321,9 @@
 
           row.innerHTML += `<td><button onclick=showSSinModal(event) id=${fee._id} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Show</button></td>`;
           tbody.appendChild(row);
+          //hide the loader
+          const waitAlert = document.querySelector("#wait-alert");
+          waitAlert.classList.add("d-none");
         });
       }
       async function getStudents() {

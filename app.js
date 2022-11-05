@@ -13,11 +13,15 @@ const cors = require("cors");
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(express.static("client"));
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
-const connect = mongoose.connection;
-connect.on("open", () => {
-  console.log("conneted to Database");
-});
+try {
+  mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
+  const connect = mongoose.connection;
+  connect.on("open", () => {
+    console.log("conneted to Database");
+  });
+} catch (e) {
+  console.log("Mongodb error: ", e);
+}
 
 let PORT = process.env.PORT || 3005;
 
