@@ -63,5 +63,5 @@ async function uploadFile(filename) {
     return ssURL;
   }
 }
-uploadFile("test");
+
 module.exports = uploadFile;
