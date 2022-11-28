@@ -8,6 +8,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const fees = require("./routes/fees");
+const  path = require('path');
 
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
