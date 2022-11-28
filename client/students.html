@@ -16,7 +16,7 @@
   <body>
     <!-- Modal For Screenshot display -->
     <div
-      class="modal fade p-1 modal-xl"
+      class="modal fade p-1 modal-md"
       id="exampleModalLong"
       tabindex="-1"
       role="dialog"
@@ -29,15 +29,29 @@
             <h5 class="modal-title" id="exampleModalLongTitle">
               Payment ScreenShot
             </h5>
+            <div>
             <button
               type="button"
-              class="close"
+              value="VERIFIED"
               data-bs-dismiss="modal"
-              aria-label="Close"
+              onclick="verifyPayment(event)"
+              class="btn btn-success"
             >
-              <span aria-hidden="true">&times;</span>
+              Verify
             </button>
+            <button
+              type="button"
+              value="REJECTED"
+              data-bs-dismiss="modal"
+              onclick="verifyPayment(event)"
+              class="btn btn-danger"
+            >
+              Reject
+            <!-- </button>
+              <span aria-hidden="true">&times;</span>
+            </button> -->
           </div>
+        </div>
           <div class="modal-body">Loading...</div>
           <div class="modal-footer">
             <button
@@ -47,22 +61,7 @@
             >
               Close
             </button>
-            <button
-              type="button"
-              value="VERIFIED"
-              onclick="verifyPayment(event)"
-              class="btn btn-success"
-            >
-              Verify
-            </button>
-            <button
-              type="button"
-              value="REJECTED"
-              onclick="verifyPayment(event)"
-              class="btn btn-danger"
-            >
-              Reject
-            </button>
+            
           </div>
         </div>
       </div>
@@ -221,7 +220,7 @@
           (fee) => fee._id === event.target.id
         );
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<div class="loading"><img style="max-width: 1100px;" src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`;
+        modalBody.innerHTML = `<div class="loading"><img style="height: 500px; width: 300px;" src=${targetEl.screenshotURL} height='inherit' width='inherit'></div>`;
       }
       function getFilteredData() {
         const studentName = document.querySelector("#student-name");
@@ -289,7 +288,13 @@
         if (response.ok && response.status === 200) {
           const data = await response.json();
           console.log(data.id);
-          window.location.reload();
+          for (let i = 0; i < cachedData.length; i++) {
+            if (cachedData[i]._id === paymentId) {
+              cachedData[i].verificationStatus = event.target.value;
+              break;
+            }
+          }
+          getFilteredData();
         } else {
           alert("please retry");
         }
