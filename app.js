@@ -13,6 +13,9 @@ const cors = require("cors");
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(express.static("client"));
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'client')});
+})
 try {
   mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
   const connect = mongoose.connection;
