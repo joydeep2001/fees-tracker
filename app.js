@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, 'client')});
 })
 try {
+  console.log('connection string', process.env.DB_CONNECT);
   mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
   const connect = mongoose.connection;
   connect.on("open", () => {
