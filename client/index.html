@@ -247,7 +247,12 @@
 
           if (!response.ok) {
             submit.disabled = false;
-
+            alerts.fail.innerHTML += response.status;
+            alerts.fail.innerHTML += "<br>";
+            alerts.fail.innerHTML += response.statusText;
+            alerts.fail.innerHTML += "<br>";
+            alerts.fail.innerHTML += response.url;
+            alerts.fail.innerHTML += "<br>";
             alerts.fail.classList.remove("d-none");
             alerts.fail.classList.add("d-flex");
 
