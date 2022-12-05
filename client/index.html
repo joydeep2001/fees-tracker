@@ -270,7 +270,7 @@
         validateForm.validate();
         validateForm.showErrors();
         if (!validateForm.isValid) {
-          //return;
+          return;
         }
 
         data.append("studentName", studentName.value);
