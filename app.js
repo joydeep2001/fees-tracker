@@ -8,12 +8,17 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const fees = require("./routes/fees");
+const  path = require('path');
 
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(express.static("client"));
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'client')});
+})
 try {
+  console.log('connection string', process.env.DB_CONNECT);
   mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
   const connect = mongoose.connection;
   connect.on("open", () => {
