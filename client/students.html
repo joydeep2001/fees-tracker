@@ -182,12 +182,23 @@
       >
         Filter
       </button>
+    <button
+    id="sort"
+    type="button"
+    onclick="sortByName()"
+    class="btn btn-primary"
+   
+  >
+    Sort
+  </button>
   </header>
     <table class="table table-striped">
       <thead style="top: 80px;"  class="bg-dark text-light position-sticky">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
+          <th scope="col">Name <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg></th>
           <th scope="col">Semester</th>
           <th scope="col">College</th>
           <th scope="col">Fees of Month</th>
@@ -223,6 +234,7 @@
     ></script>
     <script>
       let cachedData = [];
+      let filteredData = [];
       let paymentId = "";
       function showSSinModal(event) {
         paymentId = event.target.id;
@@ -257,7 +269,7 @@
           console.log(this);
           return this;
         };
-        const filterData = cachedData
+        filteredData = cachedData
           .filter((student) => filterTest(student.name, studentName))
           .debug()
           .filter((student) => filterTest(student.college, clg))
@@ -278,7 +290,7 @@
             ])
           )
           .debug();
-        createTable(filterData);
+        createTable(filteredData);
         const myModalEl = document.querySelector("#FilterModalLong");
         const modal = bootstrap.Modal.getInstance(myModalEl);
         modal.hide();
@@ -350,9 +362,24 @@
           const data = await response.json();
           console.log(data);
           cachedData = data.fees;
-          createTable(cachedData);
+          filteredData = cachedData;
+          createTable(filteredData);
         }
       }
+      function sortByName() {
+        console.log('sorting')
+        filteredData.sort((a, b) => {
+          if(a.name.toUpperCase() > b.name.toUpperCase()) {
+            return 1;
+          }
+          return -1;
+          
+        });
+        
+        createTable(filteredData);
+      }
+
+      //main()
       getStudents();
     </script>
   </body>
