@@ -172,7 +172,7 @@
         </div>
       </div>
     </div>
-    <header style="height: 80px;" class="bg-white  sticky-top">
+    <header style="height: 80px;" class="bg-white sticky-top d-flex align-items-center flex-end p-2">
       <button
         id="filter"
         type="button"
@@ -182,30 +182,43 @@
       >
         Filter
       </button>
-    <button
-    id="sort"
-    type="button"
-    onclick="sortByName()"
-    class="btn btn-primary"
-   
-  >
-    Sort
-  </button>
+
   </header>
     <table class="table table-striped">
       <thead style="top: 80px;"  class="bg-dark text-light position-sticky">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-          </svg></th>
+          <th scope="col">
+            <p>Name</p>
+            <button onclick="sortByName(1)" type="button" class="btn btn-outline-secondary btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+                <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+              </svg>
+            </button>
+            <button onclick="sortByName(-1)" type="button" class="btn btn-outline-secondary btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+              </svg>
+            </button>
+          </th>
           <th scope="col">Semester</th>
           <th scope="col">College</th>
           <th scope="col">Fees of Month</th>
           <th scope="col">Payment Mode</th>
           <th scope="col">Mobile No.</th>
           <th scope="col">Gurdian Mobile No.</th>
-          <th scope="col">Payment Date and Time</th>
+          <th scope="col">
+            <p>Payment Date and Time</p>
+            <button onclick="sortByTimeStamp(1)" type="button" class="btn btn-outline-secondary btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+                <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+              </svg>
+            </button>
+            <button onclick="sortByTimeStamp(-1)" type="button" class="btn btn-outline-secondary btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+              </svg>
+            </button></th>
           <th scope="col">Verification Status</th>
           <th scope="col">ScreenShot</th>
         </tr>
@@ -340,7 +353,7 @@
           row.innerHTML += `<td>${fee.paymentMode}</td>`;
           row.innerHTML += `<td>${fee.mobile}</td>`;
           row.innerHTML += `<td>${fee.gurdianMobile}</td>`;
-          row.innerHTML += `<td>${fee.timestamp}</td>`;
+          row.innerHTML += `<td>${formatDateTime(fee.timestamp)}</td>`;
 
           row.innerHTML += `<td><span class="badge ${
             styleClassToPaymentStatus[fee.verificationStatus]
@@ -356,29 +369,52 @@
       async function getStudents() {
         const URL = "/api/fees";
         const TEST_URL = "test_data.json";
-        const response = await fetch(URL);
+        const response = await fetch(TEST_URL);
         console.log(response);
         if (response.ok && response.status === 200) {
           const data = await response.json();
-          console.log(data);
+          //console.log(data);
           cachedData = data.fees;
           filteredData = cachedData;
           createTable(filteredData);
         }
       }
-      function sortByName() {
-        console.log('sorting')
+      
+      function sortByName(order) {
+        //console.log(order);
+        //console.log('sorting')
         filteredData.sort((a, b) => {
           if(a.name.toUpperCase() > b.name.toUpperCase()) {
-            return 1;
+            return 1 * order;
           }
-          return -1;
+          return -1 * order;
           
         });
         
         createTable(filteredData);
       }
+      function sortByTimeStamp(order) {
+        filteredData.sort((a, b) => {
+          if(a.timestamp > b.timestamp) return 1 * order;
+          return -1 * order;
+        });
+        createTable(filteredData);
 
+      }
+      function formatDateTime(timestamp) {
+        let localTimeStamp = new Date(timestamp).toLocaleString("en-GB",
+         {
+            year: 'numeric', 
+            month: 'short', 
+            day: '2-digit',
+            hour: '2-digit', 
+            minute: '2-digit', 
+            hour12: false, 
+            timeZone: 'Asia/Kolkata'
+          });
+        //console.log(localTimeStamp);
+        return localTimeStamp;
+      }
       //main()
       getStudents();
     </script>
