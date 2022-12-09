@@ -369,7 +369,7 @@
       async function getStudents() {
         const URL = "/api/fees";
         const TEST_URL = "test_data.json";
-        const response = await fetch(TEST_URL);
+        const response = await fetch(URL);
         console.log(response);
         if (response.ok && response.status === 200) {
           const data = await response.json();
