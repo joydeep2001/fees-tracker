@@ -309,7 +309,7 @@
         modal.hide();
       }
       async function verifyPayment(event) {
-        const response = await fetch("/fees-tracker/api/fees/updateVerificationStatus", {
+        const response = await fetch("/api/fees/updateVerificationStatus", {
           method: "POST",
           mode: "cors",
           headers: {
@@ -367,7 +367,7 @@
         });
       }
       async function getStudents() {
-        const URL = "/fees-tracker/api/fees";
+        const URL = "/api/fees";
         const TEST_URL = "test_data.json";
         const response = await fetch(URL);
         console.log(response);
