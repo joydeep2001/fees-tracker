@@ -8,17 +8,17 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const fees = require("./routes/fees");
-const  path = require('path');
+const path = require("path");
 
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(express.static("client"));
-app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, 'client')});
-})
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: path.join(__dirname, "client") });
+});
 try {
-  console.log('connection string', process.env.DB_CONNECT);
+  console.log("connection string", process.env.DB_CONNECT);
   mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
   const connect = mongoose.connection;
   connect.on("open", () => {
@@ -30,8 +30,8 @@ try {
 
 let PORT = process.env.PORT || 3005;
 
-app.use("/api/fees", fees);
-app.post("/api/test/:resType", (req, res) => {
+app.use("/fees-tracker/api/fees", fees);
+app.post("/fees-tracker/api/test/:resType", (req, res) => {
   console.log(req.params);
   if (req.params.resType === "success")
     return res.status(200).json({ msg: "success" });

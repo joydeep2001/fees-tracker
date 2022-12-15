@@ -231,10 +231,10 @@
         return fetch(url, options);
       }
       async function sendFeesData(data) {
-        const URL = "/api/fees/upload";
-        const URL_TEST_SUCCESS = "/api/test/success";
-        const URL_TEST_FAIL = "/api/test/fail";
-        const URL_TEST_ISE = "/api/test/ise";
+        const URL = "/fees-tracker/api/fees/upload";
+        const URL_TEST_SUCCESS = "/fees-tracker/api/test/success";
+        const URL_TEST_FAIL = "/fees-tracker/api/test/fail";
+        const URL_TEST_ISE = "/fees-tracker/api/test/ise";
         try {
           const response = await wrapFetch(URL, {
             method: "POST",
