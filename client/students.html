@@ -308,6 +308,11 @@
         const modal = bootstrap.Modal.getInstance(myModalEl);
         modal.hide();
       }
+      const styleClassToPaymentStatus = {
+          PENDING: "bg-warning",
+          VERIFIED: "bg-success",
+          REJECTED: "bg-danger",
+        };
       async function verifyPayment(event) {
         const response = await fetch("/api/fees/updateVerificationStatus", {
           method: "POST",
@@ -329,7 +334,11 @@
               break;
             }
           }
-          getFilteredData();
+          const targetStatus = document.getElementById(paymentId + '_ver_status');
+          targetStatus.outerHTML = 
+          `<td id=${paymentId +'_ver_status'}><span class="badge ${
+            styleClassToPaymentStatus[event.target.value]
+          } text-light">${event.target.value}</span></td>`;
         } else {
           alert("please retry");
         }
@@ -338,11 +347,7 @@
         const tbody = document.querySelector("tbody");
 
         tbody.innerHTML = "";
-        const styleClassToPaymentStatus = {
-          PENDING: "bg-warning",
-          VERIFIED: "bg-success",
-          REJECTED: "bg-danger",
-        };
+        
         data.forEach((fee, sl) => {
           const row = document.createElement("tr");
           row.innerHTML += `<th scope="row">${sl + 1}</th>`;
@@ -355,7 +360,7 @@
           row.innerHTML += `<td>${fee.gurdianMobile}</td>`;
           row.innerHTML += `<td>${formatDateTime(fee.timestamp)}</td>`;
 
-          row.innerHTML += `<td><span class="badge ${
+          row.innerHTML += `<td id=${fee._id +'_ver_status'}><span class="badge ${
             styleClassToPaymentStatus[fee.verificationStatus]
           } text-light">${fee.verificationStatus}</span></td>`;
 
